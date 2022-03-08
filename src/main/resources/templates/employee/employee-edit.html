@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+
+<form method="post" th:action="@{/employee/edit/{id}(id=${employee.getId()})}" th:object="${employee}">
+    <div class="form-group">
+
+        <label for="name">FullName</label>
+        <input th:field="*{fullname}" name="name" type="text" class="form-control" id="name"
+               placeholder=" Fullname kirit">
+        <label for="phone">Phone</label>
+        <input th:field="*{phone}" name="phone" type="text" class="form-control" id="phone"
+               placeholder=" Fullname kirit">
+
+    </div>
+
+    <div>
+        <label> Departament </label>
+        <div>
+            <select name="departmentId">
+                <option th:each="department : ${departmentList}"
+                        th:text="${department.name}"
+                        th:value="${department.id}">
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Update!</button>
+    <br>
+    <br>
+    <br>
+    <a class="btn btn-danger" th:href="${'/employee/add'}">Back</a>
+</form>
+
+
+
+</body>
+</html>
